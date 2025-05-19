@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,4 +99,26 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply bg-brand-blue text-white rounded-lg px-6 py-2 inline-flex items-center gap-2 transition-all hover:bg-opacity-90;
+}
+
+.input-field {
+  @apply w-full border-b border-gray-300 py-2 px-0 bg-transparent focus:outline-none focus:border-brand-blue;
+}
+
+.arrow-icon {
+  @apply h-4 w-4 ml-1;
 }

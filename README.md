@@ -1,73 +1,53 @@
-# Welcome to your Lovable project
 
-## Project info
+# Rent Invest - Real Estate Management Website
 
-**URL**: https://lovable.dev/projects/42d7a263-4893-4451-96d6-c643c5a3bdcf
+## Project Overview
 
-## How can I edit this code?
+This project is a real estate management website for Rent Invest, a company specializing in property management and investment services in Wrocław, Poland. The website serves as a digital business card and presents the company's services to potential clients.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Modern, responsive design
+- Clear service presentation for different client segments
+- Interactive components including:
+  - Client testimonials carousel
+  - Service path selection
+  - Contact form
+  - Interactive location map
+- Multiple pages including Home, About Us, and Contact
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/42d7a263-4893-4451-96d6-c643c5a3bdcf) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with:
+- React
+- TypeScript
+- Tailwind CSS
+- React Router DOM for navigation
+- Shadcn UI for UI components
 
-**Use your preferred IDE**
+## Local Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run this project locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `src/components`: Reusable UI components
+- `src/pages`: Page components that make up the routes
+- `src/hooks`: Custom React hooks
+- `public`: Static assets
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The project is deployed via Lovable's built-in deployment system. Visit the [Lovable Project](https://lovable.dev/projects/42d7a263-4893-4451-96d6-c643c5a3bdcf) for deployment options.
 
-## What technologies are used for this project?
+## Contributing
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/42d7a263-4893-4451-96d6-c643c5a3bdcf) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is managed through the Lovable platform. Changes can be made via the Lovable editor or by pushing changes to the connected repository.
