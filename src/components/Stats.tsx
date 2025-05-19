@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
 interface StatProps {
   number: string;
