@@ -1,37 +1,40 @@
 
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchTestimonials, StrapiTestimonial, getStrapiMediaUrl } from '@/services/strapiService';
 
-interface TestimonialProps {
-  name: string;
-  title: string;
-  image: string;
-  quote: string;
-}
-
-const testimonials: TestimonialProps[] = [
+const fallbackTestimonials = [
   {
     name: "ALEKSANDRA MAJKRZAK",
     title: "Klientka indywidualna",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    image: { data: { attributes: { url: "https://randomuser.me/api/portraits/women/68.jpg" }}},
     quote: "Jestem bardzo zadowolona ze współpracy z Panem Maksem. Prezentacja profesjonalna, zostały wskazane mi wszystkie szczegóły oraz bezproblemowo uzyskałam odpowiedzi na wszystkie moje pytania - a same mieszkanie naprawdę piękne i funkcjonalne :). Serdecznie polecam!"
   },
   {
     name: "MARCIN NOWAK",
     title: "Inwestor",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: { data: { attributes: { url: "https://randomuser.me/api/portraits/men/32.jpg" }}},
     quote: "Profesjonalne podejście, szybka realizacja i pełna transparentność. Współpraca z Rent Invest to był strzał w dziesiątkę dla mojej inwestycji. Szczerze polecam każdemu inwestorowi."
   },
   {
     name: "KATARZYNA WIŚNIEWSKA",
     title: "Właścicielka mieszkania",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    image: { data: { attributes: { url: "https://randomuser.me/api/portraits/women/44.jpg" }}},
     quote: "Dzięki Rent Invest nie muszę się martwić o zarządzanie moją nieruchomością. Wszystko jest zadbane profesjonalnie, a ja mogę skupić się na innych sprawach. Znakomita obsługa!"
   }
 ];
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  const { data: testimonialsData, isLoading, error } = useQuery({
+    queryKey: ['testimonials'],
+    queryFn: fetchTestimonials,
+  });
+
+  // Use data from API if available, otherwise use fallback
+  const testimonials = testimonialsData || fallbackTestimonials;
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -40,6 +43,11 @@ const Testimonials = () => {
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  // If no testimonials are available, return early
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   const testimonial = testimonials[currentTestimonial];
 
@@ -58,7 +66,7 @@ const Testimonials = () => {
         <div className="bg-brand-lightBlue rounded-lg p-8 max-w-3xl mx-auto">
           <div className="flex items-center mb-6">
             <img 
-              src={testimonial.image} 
+              src={getStrapiMediaUrl(testimonial.image?.data?.attributes?.url)} 
               alt={testimonial.name} 
               className="w-12 h-12 rounded-full object-cover"
               onError={(e) => {

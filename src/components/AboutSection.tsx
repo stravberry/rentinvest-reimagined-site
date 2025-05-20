@@ -2,8 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getStrapiMediaUrl } from '@/services/strapiService';
 
 const AboutSection = () => {
+  // In a future update, we could add fetchAbout to strapiService to load this data from Strapi
+  // For now, we're using hardcoded content
+  
   return (
     <section className="py-16">
       <div className="section-container grid md:grid-cols-2 gap-10">
@@ -47,7 +52,7 @@ const AboutSection = () => {
               className="inline-flex items-center text-brand-blue hover:underline"
             >
               Dowiedz się więcej
-              <ArrowRight className="arrow-icon ml-1" />
+              <ArrowRight className="ml-1" />
             </Link>
           </div>
         </div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { getStrapiMediaUrl } from '@/services/strapiService';
 
 interface ClientPathProps {
   number: string;
@@ -24,7 +25,7 @@ const ClientPath: React.FC<ClientPathProps> = ({ number, title, description, lin
             className="inline-flex items-center text-brand-blue hover:underline"
           >
             Dowiedz się więcej
-            <ArrowRight className="arrow-icon ml-1" />
+            <ArrowRight className="ml-1" />
           </Link>
         </div>
       </div>
