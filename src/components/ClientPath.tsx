@@ -13,6 +13,9 @@ interface ClientPathProps {
 }
 
 const ClientPath: React.FC<ClientPathProps> = ({ number, title, description, link, imageSrc }) => {
+  // Ensure imageSrc is properly processed through getStrapiMediaUrl
+  const imageUrl = getStrapiMediaUrl(imageSrc);
+  
   return (
     <div className="grid md:grid-cols-2 gap-6">
       <div className="md:py-12 flex flex-col justify-center space-y-6">
@@ -31,7 +34,7 @@ const ClientPath: React.FC<ClientPathProps> = ({ number, title, description, lin
       </div>
       <div 
         className="h-80 md:h-auto bg-cover bg-center"
-        style={{ backgroundImage: `url(${imageSrc})` }}
+        style={{ backgroundImage: `url(${imageUrl})` }}
       />
     </div>
   );

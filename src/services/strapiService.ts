@@ -1,3 +1,4 @@
+
 import { STRAPI_URL, API_ENDPOINTS, DEFAULT_HEADERS } from '@/config/strapiConfig';
 
 // Types for our content
@@ -53,6 +54,8 @@ export interface StrapiTestimonial {
 const fetchFromStrapi = async <T>(endpoint: string): Promise<T> => {
   try {
     const url = `${STRAPI_URL}${endpoint}`;
+    console.log(`Fetching data from: ${url}`);
+    
     const response = await fetch(url, {
       method: 'GET',
       headers: DEFAULT_HEADERS,
@@ -63,6 +66,7 @@ const fetchFromStrapi = async <T>(endpoint: string): Promise<T> => {
     }
 
     const data = await response.json();
+    console.log(`Data received from ${endpoint}:`, data);
     return data.data?.attributes || data.data || data;
   } catch (error) {
     console.error(`Error fetching from ${endpoint}:`, error);

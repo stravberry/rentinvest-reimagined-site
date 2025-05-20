@@ -2,16 +2,16 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, File, FileCheck, FileCode, CheckSquare } from 'lucide-react';
+import { ExternalLink, CheckSquare } from 'lucide-react';
 import { STRAPI_URL } from '@/config/strapiConfig';
 import { toast } from '@/hooks/use-toast';
 
 const StrapiAdmin = () => {
-  const handleCopyEnvFile = () => {
-    navigator.clipboard.writeText('VITE_STRAPI_URL=http://localhost:1337');
+  const handleCopyEnvValue = () => {
+    navigator.clipboard.writeText('VITE_STRAPI_URL=https://your-project.api.strapi.io');
     toast({
       title: "Skopiowano!",
-      description: "Zawartość pliku .env została skopiowana do schowka.",
+      description: "Wartość zmiennej środowiskowej została skopiowana do schowka.",
     });
   };
 
@@ -22,64 +22,53 @@ const StrapiAdmin = () => {
           <h1 className="text-4xl font-bold mb-8">Panel administracyjny CMS</h1>
           
           <div className="bg-gray-50 p-8 rounded-lg mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Jak skonfigurować i korzystać z systemu CMS Strapi</h2>
+            <h2 className="text-2xl font-semibold mb-4">Konfiguracja Strapi Cloud dla Rent Invest</h2>
             <p className="text-gray-600 mb-6">
-              Strona internetowa Rent Invest jest zintegrowana z systemem zarządzania treścią (CMS) Strapi, 
+              Strona internetowa Rent Invest jest zintegrowana z systemem zarządzania treścią (CMS) Strapi Cloud, 
               który pozwala na łatwe aktualizowanie treści bez konieczności modyfikowania kodu.
             </p>
             
             <ol className="list-decimal list-inside space-y-6 text-gray-600 mb-8">
               <li className="p-4 border rounded-lg bg-white">
-                <span className="font-medium text-lg block mb-2">Zainstaluj i uruchom Strapi lokalnie</span>
+                <span className="font-medium text-lg block mb-2">Załóż konto w Strapi Cloud</span>
                 <div className="ml-4">
-                  <p className="mb-2">Należy zainstalować i uruchomić Strapi lokalnie, wykonując następujące kroki:</p>
-                  <pre className="bg-gray-100 p-3 rounded-md text-sm my-2 overflow-x-auto">
-                    <code>
-                      npx create-strapi-app@latest my-project --quickstart
-                    </code>
-                  </pre>
-                  <p>
-                    Po wykonaniu powyższego polecenia, Strapi automatycznie uruchomi się pod adresem: 
-                    <code className="bg-gray-100 px-2 py-1 rounded mx-1">http://localhost:1337</code>
-                  </p>
+                  <p className="mb-2">Odwiedź stronę <a href="https://cloud.strapi.io" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">cloud.strapi.io</a> i utwórz swoje konto.</p>
                 </div>
               </li>
               
               <li className="p-4 border rounded-lg bg-white">
-                <span className="font-medium text-lg block mb-2">Skonfiguruj plik .env</span>
+                <span className="font-medium text-lg block mb-2">Utwórz nowy projekt Strapi</span>
                 <div className="ml-4">
-                  <p className="mb-2">Stwórz plik <code>.env</code> w głównym katalogu Twojego projektu React z następującą zawartością:</p>
+                  <p>Po utworzeniu konta, utwórz nowy projekt Strapi Cloud.</p>
+                </div>
+              </li>
+              
+              <li className="p-4 border rounded-lg bg-white">
+                <span className="font-medium text-lg block mb-2">Skonfiguruj zmienną środowiskową projektu</span>
+                <div className="ml-4">
+                  <p className="mb-2">W projekcie Lovable, ustaw zmienną środowiskową, która wskazuje na Twój adres Strapi Cloud:</p>
                   <div className="flex items-center">
                     <pre className="bg-gray-100 p-3 rounded-md text-sm my-2 overflow-x-auto flex-grow">
                       <code>
-                        VITE_STRAPI_URL=http://localhost:1337
+                        VITE_STRAPI_URL=https://your-project.api.strapi.io
                       </code>
                     </pre>
-                    <Button variant="outline" className="ml-2" onClick={handleCopyEnvFile} title="Kopiuj do schowka">
-                      <FileCode className="h-4 w-4 mr-1" /> Kopiuj
+                    <Button variant="outline" className="ml-2" onClick={handleCopyEnvValue} title="Kopiuj do schowka">
+                      <CheckSquare className="h-4 w-4 mr-1" /> Kopiuj
                     </Button>
                   </div>
                   <p className="mt-2 text-yellow-600">
-                    <strong>Ważne:</strong> Po zmianie pliku .env, zrestartuj serwer deweloperski.
+                    <strong>Ważne:</strong> Zmienną środowiskową ustawiasz w projekcie Lovable w zakładce Ustawienia projektu (Project Settings) &gt; Environment variables.
+                    Po zmianie zmiennej środowiskowej, kliknij "Save" i zrestartuj aplikację.
                   </p>
                 </div>
               </li>
               
               <li className="p-4 border rounded-lg bg-white">
-                <span className="font-medium text-lg block mb-2">Utwórz konto administratora Strapi</span>
-                <div className="ml-4">
-                  <p>
-                    Przy pierwszym uruchomieniu Strapi zostaniesz poproszony o utworzenie konta administratora.
-                    Wypełnij formularz, aby uzyskać dostęp do panelu administracyjnego.
-                  </p>
-                </div>
-              </li>
-              
-              <li className="p-4 border rounded-lg bg-white">
-                <span className="font-medium text-lg block mb-2">Utwórz typy zawartości w Strapi</span>
+                <span className="font-medium text-lg block mb-2">Utwórz typy zawartości w Strapi Cloud</span>
                 <div className="ml-4">
                   <p className="mb-2">
-                    Musisz utworzyć następujące typy zawartości (Collection Types) w Strapi:
+                    Musisz utworzyć następujące typy zawartości w panelu administratora Strapi:
                   </p>
                   <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Hero (Single Type)</li>
@@ -90,8 +79,18 @@ const StrapiAdmin = () => {
                     <li>Contact (Single Type)</li>
                     <li>Location (Single Type)</li>
                   </ul>
-                  <p className="mt-2">
-                    Dla każdego typu zawartości zdefiniuj odpowiednie pola zgodne ze strukturami danych używanymi w aplikacji.
+                </div>
+              </li>
+              
+              <li className="p-4 border rounded-lg bg-white">
+                <span className="font-medium text-lg block mb-2">Skonfiguruj uprawnienia API</span>
+                <div className="ml-4">
+                  <p className="mb-2">
+                    W panelu administratora Strapi, przejdź do sekcji "Settings" &gt; "Roles & Permissions" &gt; "Public".
+                    Upewnij się, że dla wszystkich typów zawartości uprawnienia "find" i "findOne" są włączone.
+                  </p>
+                  <p>
+                    To pozwoli stronie internetowej pobierać dane z Twojego Strapi Cloud API bez konieczności autoryzacji.
                   </p>
                 </div>
               </li>
@@ -100,8 +99,8 @@ const StrapiAdmin = () => {
                 <span className="font-medium text-lg block mb-2">Dodaj zawartość w panelu administracyjnym</span>
                 <div className="ml-4">
                   <p>
-                    Po skonfigurowaniu typów zawartości, dodaj dane za pomocą panelu administracyjnego Strapi.
-                    Wprowadzone dane będą automatycznie wyświetlane na Twojej stronie.
+                    Po skonfigurowaniu typów zawartości, dodaj dane za pomocą panelu administracyjnego Strapi Cloud.
+                    Wprowadzone dane będą automatycznie wyświetlane na Twojej stronie Rent Invest.
                   </p>
                 </div>
               </li>
@@ -109,8 +108,8 @@ const StrapiAdmin = () => {
             
             <div className="flex justify-center">
               <Button className="bg-brand-blue text-white" asChild>
-                <a href={`${STRAPI_URL}/admin`} target="_blank" rel="noopener noreferrer">
-                  Przejdź do panelu administracyjnego
+                <a href="https://cloud.strapi.io" target="_blank" rel="noopener noreferrer">
+                  Przejdź do Strapi Cloud
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </Button>

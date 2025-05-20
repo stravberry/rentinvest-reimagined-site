@@ -5,9 +5,39 @@ import { ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getStrapiMediaUrl } from '@/services/strapiService';
 
+interface StrapiAbout {
+  title: string;
+  content: string;
+  videoUrl?: string;
+  image?: {
+    data?: {
+      attributes?: {
+        url?: string;
+      }
+    }
+  };
+}
+
+// This function will be implemented in a future update
+const fetchAbout = async (): Promise<StrapiAbout> => {
+  // Placeholder for future implementation
+  return {
+    title: "Profesjonalne zarządzanie nieruchomościami we Wrocławiu",
+    content: "<p>Rent Invest to lider w zakresie zarządzania najmem i mieszkań inwestycyjnych we Wrocławiu. Od 2017 roku pomagamy właścicielom i inwestorom maksymalizować zyski z wynajmu.</p><p>Działamy we Wrocławiu od 2017 roku, łącząc doświadczenie z pasją do nieruchomości. Specjalizujemy się w kompleksowym zarządzaniu najmem, oferowaniem pakietów inwestycyjnych oraz realizacji projektów deweloperskich.</p><p>Stawiamy na profesjonalizm, transparentność i długofalowe relacje - bo wiemy, że sukces w nieruchomościach buduje się na zaufaniu.</p>"
+  };
+};
+
 const AboutSection = () => {
-  // In a future update, we could add fetchAbout to strapiService to load this data from Strapi
-  // For now, we're using hardcoded content
+  const { data: about } = useQuery({
+    queryKey: ['about'],
+    queryFn: fetchAbout,
+    enabled: false, // Disabled until API endpoint is ready
+  });
+  
+  const content = about?.content || '';
+  const paragraphs = content.split('</p><p>').map(p => 
+    p.replace('<p>', '').replace('</p>', '')
+  );
   
   return (
     <section className="py-16">
@@ -26,24 +56,32 @@ const AboutSection = () => {
         
         <div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Profesjonalne zarządzanie nieruchomościami we Wrocławiu
+            {about?.title || "Profesjonalne zarządzanie nieruchomościami we Wrocławiu"}
           </h2>
           <div className="space-y-4 text-gray-700">
-            <p>
-              Rent Invest to lider w zakresie zarządzania najmem i mieszkań inwestycyjnych we Wrocławiu.
-              Od 2017 roku pomagamy właścicielom i inwestorom maksymalizować zyski z wynajmu.
-            </p>
-            <p>
-              Działamy we Wrocławiu od 2017 roku, łącząc doświadczenie z pasją do nieruchomości.
-              Specjalizujemy się w kompleksowym zarządzaniu najmem, oferowaniem pakietów inwestycyjnych
-              oraz realizacji projektów deweloperskich. Każdego klienta traktujemy indywidualnie, oferując
-              elastyczne rozwiązania dopasowane do jego potrzeb i oczekiwań.
-            </p>
-            <p>
-              Stawiamy na profesjonalizm, transparentność i długofalowe relacje - bo wiemy, że sukces w nieruchomościach buduje się na
-              zaufaniu. Doskonale znamy lokalny rynek i tworzymy zespół ekspertów, którzy z zaangażowaniem
-              wspierają klientów na każdym etapie współpracy.
-            </p>
+            {paragraphs.length > 0 ? (
+              paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))
+            ) : (
+              <>
+                <p>
+                  Rent Invest to lider w zakresie zarządzania najmem i mieszkań inwestycyjnych we Wrocławiu.
+                  Od 2017 roku pomagamy właścicielom i inwestorom maksymalizować zyski z wynajmu.
+                </p>
+                <p>
+                  Działamy we Wrocławiu od 2017 roku, łącząc doświadczenie z pasją do nieruchomości.
+                  Specjalizujemy się w kompleksowym zarządzaniu najmem, oferowaniem pakietów inwestycyjnych
+                  oraz realizacji projektów deweloperskich. Każdego klienta traktujemy indywidualnie, oferując
+                  elastyczne rozwiązania dopasowane do jego potrzeb i oczekiwań.
+                </p>
+                <p>
+                  Stawiamy na profesjonalizm, transparentność i długofalowe relacje - bo wiemy, że sukces w nieruchomościach buduje się na
+                  zaufaniu. Doskonale znamy lokalny rynek i tworzymy zespół ekspertów, którzy z zaangażowaniem
+                  wspierają klientów na każdym etapie współpracy.
+                </p>
+              </>
+            )}
           </div>
           
           <div className="mt-8">
