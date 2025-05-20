@@ -7,7 +7,7 @@
  */
 
 // The base URL for your Strapi backend
-export const STRAPI_URL = process.env.REACT_APP_STRAPI_URL || 'http://localhost:1337';
+export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
 
 // API endpoints for different content types
 export const API_ENDPOINTS = {
